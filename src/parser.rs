@@ -2090,8 +2090,8 @@ impl<'a> Parser<'a> {
                     let (precision, scale) = self.parse_optional_precision_scale()?;
                     Ok(DataType::Decimal(precision, scale))
                 }
-                Keyword::BINARY => Ok(DataType::Binary(self.parse_required_precision()?)),
-                Keyword::VARBINARY => Ok(DataType::Binary(self.parse_required_precision()?)),
+                Keyword::BINARY => Ok(DataType::Binary(self.parse_optional_precision()?)),
+                Keyword::VARBINARY => Ok(DataType::Varbinary(self.parse_required_precision()?)),
                 Keyword::CLOB => Ok(DataType::Clob(self.parse_required_precision()?)),
                 Keyword::BLOB => Ok(DataType::Blob(self.parse_required_precision()?)),
                 _ => {
@@ -2229,7 +2229,7 @@ impl<'a> Parser<'a> {
             Ok(n)
         } else {
             Err(ParserError::ParserError(
-                "expected precision data type {}".to_string(),
+                "expected precision data type".to_string(),
             ))
         }
     }

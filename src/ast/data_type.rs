@@ -32,7 +32,7 @@ pub enum DataType {
     /// Large character object e.g. CLOB(1000)
     Clob(u64),
     /// Fixed-length binary type e.g. BINARY(10)
-    Binary(u64),
+    Binary(Option<u64>),
     /// Variable-length binary type e.g. VARBINARY(10)
     Varbinary(u64),
     /// Large binary object e.g. BLOB(1000)
@@ -86,7 +86,10 @@ impl fmt::Display for DataType {
             }
             DataType::Uuid => write!(f, "UUID"),
             DataType::Clob(size) => write!(f, "CLOB({})", size),
-            DataType::Binary(size) => write!(f, "BINARY({})", size),
+            DataType::Binary(size) => match size {
+                None => write!(f, "BINARY"),
+                Some(s) => write!(f, "BINARY({})", s)
+            },
             DataType::Varbinary(size) => write!(f, "VARBINARY({})", size),
             DataType::Blob(size) => write!(f, "BLOB({})", size),
             DataType::Decimal(precision, scale) => {
