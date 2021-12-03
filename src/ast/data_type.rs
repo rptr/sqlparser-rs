@@ -75,6 +75,8 @@ pub enum DataType {
     Custom(ObjectName),
     /// Arrays
     Array(Box<DataType>),
+    /// Bitfield
+    Bit(Option<u64>),
 }
 
 impl fmt::Display for DataType {
@@ -118,6 +120,10 @@ impl fmt::Display for DataType {
             DataType::String => write!(f, "STRING"),
             DataType::Bytea => write!(f, "BYTEA"),
             DataType::Array(ty) => write!(f, "{}[]", ty),
+            DataType::Bit(size) => match size {
+                None => write!(f, "BIT"),
+                Some(s) => write!(f, "BIT({})", s)
+            },
             DataType::Custom(ty) => write!(f, "{}", ty),
         }
     }

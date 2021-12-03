@@ -98,6 +98,7 @@ define_keywords!(
     BETWEEN,
     BIGINT,
     BINARY,
+    BIT,
     BLOB,
     BOOLEAN,
     BOTH,
