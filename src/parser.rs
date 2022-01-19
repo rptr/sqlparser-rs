@@ -2095,6 +2095,7 @@ impl<'a> Parser<'a> {
                 Keyword::CLOB => Ok(DataType::Clob(self.parse_required_precision()?)),
                 Keyword::BLOB => Ok(DataType::Blob(self.parse_required_precision()?)),
                 Keyword::BIT => Ok(DataType::Bit(self.parse_optional_precision()?)),
+                Keyword::JSON => Ok(DataType::Json),
                 _ => {
                     self.prev_token();
                     let type_name = self.parse_object_name()?;

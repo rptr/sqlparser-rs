@@ -77,6 +77,7 @@ pub enum DataType {
     Array(Box<DataType>),
     /// Bitfield
     Bit(Option<u64>),
+    Json,
 }
 
 impl fmt::Display for DataType {
@@ -125,6 +126,7 @@ impl fmt::Display for DataType {
                 Some(s) => write!(f, "BIT({})", s)
             },
             DataType::Custom(ty) => write!(f, "{}", ty),
+            DataType::Json => write!(f, "JSON"),
         }
     }
 }
