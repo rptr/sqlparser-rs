@@ -86,6 +86,8 @@ pub enum BinaryOperator {
     PGRegexIMatch,
     PGRegexNotMatch,
     PGRegexNotIMatch,
+    JsonColumnPath,
+    JsonInlinePath,
 }
 
 impl fmt::Display for BinaryOperator {
@@ -121,6 +123,8 @@ impl fmt::Display for BinaryOperator {
             BinaryOperator::PGRegexIMatch => "~*",
             BinaryOperator::PGRegexNotMatch => "!~",
             BinaryOperator::PGRegexNotIMatch => "!~*",
+            BinaryOperator::JsonColumnPath => "->",
+            BinaryOperator::JsonInlinePath => "->>",
         })
     }
 }
